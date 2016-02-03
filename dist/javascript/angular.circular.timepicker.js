@@ -1,3 +1,11 @@
+/**
+ * @license angular-circular-timepicker  version: 0.1.0
+ * Copyright 2016 sidaudhi.com, Inc. http://www.sidaudhi.com
+ * License: MIT
+ *
+ * @author        Siddharth Audhinarayanan
+ * @since        2016-Jan-31
+ */
 var app = angular.module('angular.datetimepicker',[]);
 app.directive('datetimepicker',['$locale',function($locale){
   return {
