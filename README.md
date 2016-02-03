@@ -9,24 +9,39 @@ Requires:
  * AngularJS 1.4.x or higher (1.0.x will not work)
 
 # Usage
-We use bower for dependency management, run
+We use **bower** and **npm** for dependency management, run
 
 ```shell
 bower install --save angular-circular-timepicker
 ```
+```shell
+npm install --save angular-circular-timepicker
+```
 
 This will copy the angular-circular-timepicker files into your components folder, along with its dependencies.
 
-Add the css:
+### Add the css:
+
+#### bower
 
 ```html
 <link rel="stylesheet" href="bower_components/angular-circular-timepicker/dist/stylesheets/angular.circular.timepicker.css"/>
 ```
+#### npm
+```html
+<link rel="stylesheet" href="node_modules/angular-circular-timepicker/dist/stylesheets/angular.circular.timepicker.css"/>
+```
 
-Load the script files in your application:
+### Load the script files in your application:
+#### bower
 ```html
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js"></script>
+```
+#### npm
+```html
+<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="node_modules/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js"></script>
 ```
 
 Add the date module as a dependency to your application module:
