@@ -95,6 +95,7 @@
   right: 0;
   background-color: rgba(0,0,0,0.5);
   position: fixed;
+  z-index: 990;
 }
 
 .datetimepicker .datetimepicker-close {
@@ -233,6 +234,34 @@
   border-radius: 50%;
 }
 
+.datetimepicker .time-circle-outer .time-meridian {
+  position: absolute;
+  top: -85px;
+  width: 30px;
+  height: 30px;
+  padding: 7px 5px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+}
+
+.datetimepicker .time-circle-outer .time-meridian.time-left {
+  left: -15px;
+}
+
+.datetimepicker .time-circle-outer .time-meridian.time-right {
+  right: -15px;
+}
+
+.datetimepicker .time-circle-outer .time-meridian.selected {
+  background-color: #fff;
+  color: #1ab394;
+}
+
 .datetimepicker .time-circle-outer .time-circle-hand {
   width: 6px;
   height: 82px;
@@ -352,7 +381,7 @@
   position: absolute;
   margin-top: -15px;
   margin-left: -15px;
-  background-color: #dcdcdc;
+  background-color: #b4b4b4;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   padding: 5px;
@@ -362,8 +391,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
+  color: #fff;
 }
 
 .datetimepicker .time-circle-outer .time:hover,

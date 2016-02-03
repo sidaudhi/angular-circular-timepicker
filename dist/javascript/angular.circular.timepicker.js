@@ -4,8 +4,7 @@ app.directive('datetimepicker',['$locale',function($locale){
     restrict: 'E',
     replace: true,
     scope:{
-      model: '=',
-      config: '='
+      model: '='
     },
     template: '<div class="datetimepicker">'
             +   '<div class="datetimepicker-modal" ng-click="setState(false)" ng-if="state && config.modal"  style="background-color:{{config.backgroundColor}}"></div>'
@@ -19,7 +18,7 @@ app.directive('datetimepicker',['$locale',function($locale){
             +       '<div class="datetimepicker-tab" ng-class="{\'active\':tab==\'time\'}" ng-click="tab=\'time\'">Time</div>'
             +     '</div>'
             +     '<div class="datetimepicker-preview" ng-if="tab==\'date\'">{{datePreview}}</div>'
-            +     '<div class="datetimepicker-preview" ng-click="switchMeridian()" ng-if="tab==\'time\'">{{timePreview}}</div>'
+            +     '<div class="datetimepicker-preview" ng-if="tab==\'time\'">{{timePreview}}</div>'
             +     '<div class="datetimepicker-section" ng-if="tab==\'date\'">'
             +       '<div class="datetimepicker-month">'
             +         '<div class="datetimepicker-action left" ng-click="addMonth(-1)"><</div>'
@@ -41,6 +40,8 @@ app.directive('datetimepicker',['$locale',function($locale){
             +     '</div>'
             +     '<div class="datetimepicker-section" ng-if="tab==\'time\'">'
             +       '<div class="time-circle-outer">'
+            +         '<div class="time-meridian time-left" ng-click="setMeridian(\'AM\')" ng-class="{\'selected\':meridian==\'AM\'}">AM</div>'
+            +         '<div class="time-meridian time-right" ng-click="setMeridian(\'PM\')" ng-class="{\'selected\':meridian==\'PM\'}">PM</div>'
             +         '<div class="time-circle-center"></div>'
             +         '<div class="time-circle-hand time-circle-hand-large deg-{{minutes/5}}" ></div>'
             +         '<div class="time time-{{$index+1}}" ng-class="{\'selected\':minutes==time}" ng-click="setMinutes(time)" ng-repeat="time in [5,10,15,20,25,30,35,40,45,50,55,0]">{{time}}</div>'
@@ -55,7 +56,11 @@ app.directive('datetimepicker',['$locale',function($locale){
     link: function(scope,element,attributes){
       scope.state = false;
       scope.tab = 'time';
-
+      scope.config = {
+        modal: true,
+        color:'rgba(255,255,255,0.75)',
+        backgroundColor: 'rgba(0,0,0,0.75)'
+      };
       scope.$watch('model',function(){
         var date;
         if(!scope.model){
@@ -90,11 +95,8 @@ app.directive('datetimepicker',['$locale',function($locale){
         scope.hour = hour;
       }
 
-      scope.switchMeridian = function(){
-        if(scope.meridian == "AM")
-          scope.meridian = "PM";
-        else
-          scope.meridian = "AM";
+      scope.setMeridian = function(meridian){
+        scope.meridian = meridian;
       }
 
       scope.setMinutes = function(minutes){
