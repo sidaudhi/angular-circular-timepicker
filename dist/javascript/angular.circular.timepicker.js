@@ -54,7 +54,7 @@ app.directive('datetimepicker',['$locale',function($locale){
             + '</div>',
     link: function(scope,element,attributes){
       scope.state = false;
-      scope.tab = 'date';
+      scope.tab = 'time';
 
       scope.$watch('model',function(){
         var date;

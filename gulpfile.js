@@ -16,7 +16,7 @@ gulp.task('styles',['copy-sprites','copy-fonts'], function() {
       './source/stylesheets/*.styl'
     ])
     .pipe(stylus({use:nib()}))
-    .pipe(concatCss('angular.datetimepicker.css'))
+    .pipe(concatCss('angular.circular.timepicker.css'))
     .pipe(gulp.dest('./dist/stylesheets'));
 });
 
@@ -34,6 +34,6 @@ gulp.task('scripts',function(){
   return gulp.src([
     './source/javascript/*.js',
   ])
-  .pipe(concat('angular.datetimepicker.js'))
+  .pipe(concat('angular.circular.timepicker.js'))
   .pipe(gulp.dest('./dist/javascript'))
 })
