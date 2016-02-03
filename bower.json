@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "homepage": "http://sidaudhi.github.io/angular-circular-timepicker",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
