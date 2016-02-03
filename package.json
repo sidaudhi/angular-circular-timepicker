@@ -1,0 +1,14 @@
+{
+  "name": "angular-circular-timepicker-demo",
+  "version": "1.0.0",
+  "description": "Demo for angular-circular-timepicker",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "sidaudhi",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jade": "^1.1.0"
+  }
+}

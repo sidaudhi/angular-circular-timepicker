@@ -1,0 +1,31 @@
+html
+  head
+    title AngularJS Datetime Picker
+    link(rel="stylesheet",href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css")
+    link(rel="stylesheet",href="https://rawgit.com/sidaudhi/angular-circular-timepicker/master/dist/stylesheets/angular.circular.timepicker.css",type="text/css")
+    meta(name="viewport",content="width=device-width,initial-scale=1.0")
+  body(ng-app="angular.datetimepicker")
+    header.jumbotron.text-center
+      div.container
+        h1 AngularJS Circular Time Picker
+        p Native AngularJS datetime picker element directive with a circular interface for time
+        p Version 0.1.0
+        p.btn-group
+          a.btn-default.btn(href="https://github.com/sidaudhi/angular-circular-timepicker") Code on GitHub
+          a.btn-primary.btn(href="https://github.com/sidaudhi/angular-circular-timepicker/archive/master.zip") Download
+    div.container
+      div.page-header
+        h2 Example
+      div.row
+        div.col-sm-6
+          h3 Inline
+          p Invoke the datetime picker inline with your markup
+          div.well
+            datetimepicker(model="datetime2")
+        div.col-sm-6
+          h3 How
+          p You can pass configuration options as a function or an object.
+            div.well
+              p &lt;datetimepicker model=&quot;datetime2&quot;&gt;&lt;/datetimepicker&gt;
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js")
+    script(src="https://rawgit.com/sidaudhi/angular-circular-timepicker/master/dist/javascript/angular.circular.timepicker.js",type="text/javascript")
