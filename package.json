@@ -1,6 +1,6 @@
 {
   "name": "angular-circular-timepicker",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "A date time picker element directive with a circular interface for choosing time",
   "scripts": {
     "start": "gulp",
