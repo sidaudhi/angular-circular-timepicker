@@ -7,6 +7,7 @@ Native AngularJS datetime picker element directive with a circular interface for
 
 Requires:
  * AngularJS 1.4.x or higher (1.0.x will not work)
+ * MomentJS
 
 # Usage
 We use **bower** and **npm** for dependency management, run
@@ -36,11 +37,13 @@ This will copy the angular-circular-timepicker files into your components folder
 #### bower
 ```html
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/moment/moment.js"></script>
 <script type="text/javascript" src="bower_components/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js"></script>
 ```
 #### npm
 ```html
 <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="node_modules/moment/moment.js"></script>
 <script type="text/javascript" src="node_modules/angular-circular-timepicker/dist/javascript/angular.circular.timepicker.js"></script>
 ```
 
@@ -53,5 +56,5 @@ var myAppModule = angular.module('MyApp', ['angular.circular.timepicker.js'])
 Apply the directive to your form elements:
 
 ```html
-<datetimepicker model="data.date"></datetimepicker>
+<circulartimepicker model="data.date"></circulartimepicker>
 ```

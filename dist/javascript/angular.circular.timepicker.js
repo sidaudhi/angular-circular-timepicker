@@ -6,8 +6,12 @@
  * @author        Siddharth Audhinarayanan
  * @since        2016-Jan-31
  */
+ String.prototype.paddingLeft = function (paddingValue) {
+    return String(paddingValue + this).slice(-paddingValue.length);
+ };
+
 var app = angular.module('angular.datetimepicker',[]);
-app.directive('datetimepicker',['$locale',function($locale){
+app.directive('datetimepicker',[function(){
   return {
     restrict: 'E',
     replace: true,
@@ -34,13 +38,7 @@ app.directive('datetimepicker',['$locale',function($locale){
             +         '<div class="datetimepicker-current-month">{{displayMonth}} {{year}}</div>'
             +       '</div>'
             +       '<div class="datetimepicker-calendar">'
-            +         '<div class="datetimepicker-day">S</div>'
-            +         '<div class="datetimepicker-day">M</div>'
-            +         '<div class="datetimepicker-day">T</div>'
-            +         '<div class="datetimepicker-day">W</div>'
-            +         '<div class="datetimepicker-day">T</div>'
-            +         '<div class="datetimepicker-day">F</div>'
-            +         '<div class="datetimepicker-day">S</div>'
+            +         '<div class="datetimepicker-day" ng-repeat="day in dayNames">{{day | limitTo: 1}}</div>'
             +         '<div class="datetimepicker-day datetimepicker-leading-day" ng-repeat="d in days.leadingDays">{{d}}</div>'
             +         '<div class="datetimepicker-day datetimepicker-active-day" ng-class="{\'selected\':day==d}" ng-click="setDay(d)" ng-repeat="d in days.days">{{d}}</div>'
             +         '<div class="datetimepicker-day datetimepicker-trailing-day" ng-repeat="d in days.trailingDays">{{d}}</div>'
@@ -51,8 +49,8 @@ app.directive('datetimepicker',['$locale',function($locale){
             +         '<div class="time-meridian time-left" ng-click="setMeridian(\'AM\')" ng-class="{\'selected\':meridian==\'AM\'}">AM</div>'
             +         '<div class="time-meridian time-right" ng-click="setMeridian(\'PM\')" ng-class="{\'selected\':meridian==\'PM\'}">PM</div>'
             +         '<div class="time-circle-center"></div>'
-            +         '<div class="time-circle-hand time-circle-hand-large deg-{{minutes/5}}" ></div>'
-            +         '<div class="time time-{{$index+1}}" ng-class="{\'selected\':minutes==time}" ng-click="setMinutes(time)" ng-repeat="time in [5,10,15,20,25,30,35,40,45,50,55,0]">{{time}}</div>'
+            +         '<div class="time-circle-hand time-circle-hand-large deg-{{minute/5}}" ></div>'
+            +         '<div class="time time-{{$index+1}}" ng-class="{\'selected\':minute==time}" ng-click="setMinutes(time)" ng-repeat="time in [5,10,15,20,25,30,35,40,45,50,55,0]">{{time}}</div>'
             +         '<div class="time-circle-inner">'
             +           '<div class="time-circle-hand deg-{{hour}}" ></div>'
             +           '<div class="time time-{{$index+1}}" ng-class="{\'selected\':hour==time}" ng-click="setHour(time)" ng-repeat="time in [1,2,3,4,5,6,7,8,9,10,11,12]">{{time}}</div>'
@@ -69,30 +67,29 @@ app.directive('datetimepicker',['$locale',function($locale){
         color:'rgba(255,255,255,0.75)',
         backgroundColor: 'rgba(0,0,0,0.75)'
       };
-      scope.$watch('model',function(){
-        var date;
-        if(!scope.model){
-          date = new Date();
-        }else{
-          date = scope.model
-        }
-        scope.month = date.getMonth();
-        scope.day = date.getDate();
-        scope.year = date.getFullYear();
-        var hour = date.getHours();
-        if(hour > 12){
-          scope.meridian = "PM";
-        }else{
-          scope.meridian = "AM";
-        }
-        scope.hour = hour % 12 == 0 ? 12 : hour % 12;
-        scope.minutes = Math.ceil(date.getMinutes()/5)*5;
-        if(scope.minutes == 60)
-          scope.minutes = 55;
+      scope.months = ["January","February","March","April","May","June","July","Augusta","September","October","November","December"];
+      scope.dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      scope.$watch('model',function(value){
+        var m;
+        if(value)
+          m = moment(value);
+        else
+          m = moment();
+        m = m.minute(5*Math.ceil(m.minute()/5));
+        scope.display = m.format('YYYY-MM-DD hh:mm A');
+        scope.days = scope.getDaysInMonth(m.year(),m.month());
+        scope.minute = m.minute();
+        scope.meridian = m.format('A');
+        scope.hour  = scope.meridian == 'PM' ? m.hour() - 12: m.hour();
+        if(scope.hour==0) scope.hour = 12;
+        scope.datePreview = m.format('YYYY-MM-DD');
+        scope.timePreview = m.format('hh:mm A');
+        scope.displayMonth = scope.months[m.month()];
+        scope.day = m.date();
       })
 
-      scope.setDay = function(d){
-        scope.day = d;
+      scope.setDay = function(date){
+        scope.model = moment(scope.model).date(date).toDate();
       }
 
       scope.setState = function(state){
@@ -100,27 +97,32 @@ app.directive('datetimepicker',['$locale',function($locale){
       }
 
       scope.setHour = function(hour){
-        scope.hour = hour;
+        if(scope.meridian == 'PM' && hour < 12)
+          hour = hour + 12;
+        if(scope.meridian == 'AM' && hour == 12)
+          hour = hour - 12;
+        scope.model = moment(scope.model).hour(hour).toDate();
       }
 
       scope.setMeridian = function(meridian){
-        scope.meridian = meridian;
+        var m = moment(scope.model);
+
+        if(meridian == 'AM'){
+          if(m.hours()>=12){
+            m = m.add(-12,'hours');
+            scope.model = m.toDate();
+          }
+        }else{
+          if(m.hours()<12){
+            m = m.add(12,'hours');
+            scope.model = m.toDate();
+          }
+        }
       }
 
       scope.setMinutes = function(minutes){
-        scope.minutes = minutes;
+        scope.model = moment(scope.model).minute(minutes).toDate();
       }
-
-      scope.$watch('[month,day,year,hour,minutes,seconds,meridian]',function(){
-        var dateString = scope.year+"-"+(scope.month+1).toString().paddingLeft("00")+"-"+scope.day.toString().paddingLeft("00");
-        var timeString = scope.hour.toString().paddingLeft("00")+":"+scope.minutes.toString().paddingLeft("00")+" "+scope.meridian;
-        scope.model = new Date(dateString+" "+timeString);
-        scope.displayMonth = $locale.DATETIME_FORMATS.MONTH[scope.month];
-        scope.display = dateString+" "+timeString;
-        scope.days = scope.getDaysInMonth(scope.year,scope.month);
-        scope.datePreview = dateString;
-        scope.timePreview = timeString;
-      });
 
       var days = [];
       for(var i=1;i<=31;i++){
@@ -150,20 +152,8 @@ app.directive('datetimepicker',['$locale',function($locale){
       }
 
       scope.addMonth = function(increment){
-        scope.month = scope.month + increment;
-        if(scope.month < 0){
-          scope.month = 11;
-          scope.year--;
-        }
-        if(scope.month > 11){
-          scope.month = 0;
-          scope.year++;
-        }
+        scope.model = moment(scope.model).add(increment,'months').toDate();
       }
     }
   }
-}])
-
-String.prototype.paddingLeft = function (paddingValue) {
-   return String(paddingValue + this).slice(-paddingValue.length);
-};
+}]);
