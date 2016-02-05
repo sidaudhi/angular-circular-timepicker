@@ -10,8 +10,8 @@
     return String(paddingValue + this).slice(-paddingValue.length);
  };
 
-var app = angular.module('angular.datetimepicker',[]);
-app.directive('datetimepicker',[function(){
+var app = angular.module('angular.circular.datetimepicker',[]);
+app.directive('circulartimepicker',[function(){
   return {
     restrict: 'E',
     replace: true,
@@ -26,12 +26,12 @@ app.directive('datetimepicker',[function(){
             +   '<div class="datetimepicker-display">{{display}}</div>'
             +   '<div ng-if="state" class="datetimepicker-content" ng-class="{\'datetimepicker-absolute\':config.modal}">'
             +     '<div class="datetimepicker-tabs">'
-            +       '<div class="datetimepicker-tab" ng-class="{\'active\':tab==\'date\'}" ng-click="tab=\'date\'">Date</div>'
-            +       '<div class="datetimepicker-tab" ng-class="{\'active\':tab==\'time\'}" ng-click="tab=\'time\'">Time</div>'
+            +       '<div class="datetimepicker-tab datetimepicker-tab-date" ng-class="{\'active\':tab==\'date\'}" ng-click="setTab(\'date\')">Date</div>'
+            +       '<div class="datetimepicker-tab datetimepicker-tab-time" ng-class="{\'active\':tab==\'time\'}" ng-click="setTab(\'time\')">Time</div>'
             +     '</div>'
             +     '<div class="datetimepicker-preview" ng-if="tab==\'date\'">{{datePreview}}</div>'
             +     '<div class="datetimepicker-preview" ng-if="tab==\'time\'">{{timePreview}}</div>'
-            +     '<div class="datetimepicker-section" ng-if="tab==\'date\'">'
+            +     '<div class="datetimepicker-section datetimepicker-date-section" ng-if="tab==\'date\'">'
             +       '<div class="datetimepicker-month">'
             +         '<div class="datetimepicker-action left" ng-click="addMonth(-1)"><</div>'
             +         '<div class="datetimepicker-action right" ng-click="addMonth(1)">></div>'
@@ -44,7 +44,7 @@ app.directive('datetimepicker',[function(){
             +         '<div class="datetimepicker-day datetimepicker-trailing-day" ng-repeat="d in days.trailingDays">{{d}}</div>'
             +       '</div>'
             +     '</div>'
-            +     '<div class="datetimepicker-section" ng-if="tab==\'time\'">'
+            +     '<div class="datetimepicker-section datetimepicker-date-time" ng-if="tab==\'time\'">'
             +       '<div class="time-circle-outer">'
             +         '<div class="time-meridian time-left" ng-click="setMeridian(\'AM\')" ng-class="{\'selected\':meridian==\'AM\'}">AM</div>'
             +         '<div class="time-meridian time-right" ng-click="setMeridian(\'PM\')" ng-class="{\'selected\':meridian==\'PM\'}">PM</div>'
@@ -62,6 +62,9 @@ app.directive('datetimepicker',[function(){
     link: function(scope,element,attributes){
       scope.state = false;
       scope.tab = 'time';
+      scope.setTab = function(tab){
+        scope.tab = tab;
+      }
       scope.config = {
         modal: true,
         color:'rgba(255,255,255,0.75)',
