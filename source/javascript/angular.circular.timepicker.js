@@ -16,7 +16,8 @@ app.directive('circulartimepicker',[function(){
     restrict: 'E',
     replace: true,
     scope:{
-      model: '='
+      model: '=',
+      format: '='
     },
     template: '<div class="datetimepicker">'
             +   '<div class="datetimepicker-modal" ng-click="setState(false)" ng-if="state && config.modal"  style="background-color:{{config.backgroundColor}}"></div>'
@@ -65,6 +66,7 @@ app.directive('circulartimepicker',[function(){
       scope.setTab = function(tab){
         scope.tab = tab;
       }
+      scope.displayFormat = scope.format && scope.format.momentFormat ? scope.format.momentFormat : scope.format && scope.format.military ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD hh:mm A';
       scope.config = {
         modal: true,
         color:'rgba(255,255,255,0.75)',
@@ -79,7 +81,7 @@ app.directive('circulartimepicker',[function(){
         else
           m = moment();
         m = m.minute(5*Math.ceil(m.minute()/5));
-        scope.display = m.format('YYYY-MM-DD hh:mm A');
+        scope.display = m.format(scope.displayFormat);
         scope.days = scope.getDaysInMonth(m.year(),m.month());
         scope.minute = m.minute();
         scope.meridian = m.format('A');
