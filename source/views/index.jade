@@ -26,11 +26,15 @@ html
           p Invoke the datetime picker inline with your markup
           div(ng-controller="appCtrl").well
             circulartimepicker(model="datetime2")
+            circulartimepicker(model="datetime2",format="{military:true}")
+            circulartimepicker(model="datetime2",format="{momentFormat:'YYYY'}")
         div.col-sm-6
           h3 How
           p You can pass configuration options as a function or an object.
             div.well
               p &lt;datetimepicker model=&quot;datetime2&quot;&gt;&lt;/datetimepicker&gt;
+              p &lt;datetimepicker model=&quot;datetime2&quot; format=&quot;{military:true}&quot;&gt;&lt;/datetimepicker&gt;
+              p &lt;datetimepicker model=&quot;datetime2&quot; format=&quot;{momentFormat:&#39;YYYY&#39;}&quot;&gt;&lt;/datetimepicker&gt;
     script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js")
     script(src="https://rawgit.com/sidaudhi/angular-circular-timepicker/master/dist/javascript/angular.circular.timepicker.js",type="text/javascript")
