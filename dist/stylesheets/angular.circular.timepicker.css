@@ -176,9 +176,31 @@
   border-top: 1px solid rgba(0,0,0,0.2);
   border-bottom: 1px solid rgba(0,0,0,0.2);
   background-color: #fff;
+  width: 174px;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .datetimepicker .datetimepicker-content .datetimepicker-month .datetimepicker-current-month {
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.datetimepicker .datetimepicker-content .datetimepicker-year {
+  border-top: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  background-color: #fff;
+  width: 115px;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+
+.datetimepicker .datetimepicker-content .datetimepicker-year .datetimepicker-current-year {
   text-align: center;
   padding: 10px 10px;
 }

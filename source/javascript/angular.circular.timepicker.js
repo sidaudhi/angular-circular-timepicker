@@ -31,7 +31,12 @@ app.directive('datetimepicker',['$locale',function($locale){
             +       '<div class="datetimepicker-month">'
             +         '<div class="datetimepicker-action left" ng-click="addMonth(-1)"><</div>'
             +         '<div class="datetimepicker-action right" ng-click="addMonth(1)">></div>'
-            +         '<div class="datetimepicker-current-month">{{displayMonth}} {{year}}</div>'
+            +         '<div class="datetimepicker-current-month">{{displayMonth}}</div>'
+            +       '</div>'
+            +       '<div class="datetimepicker-year">'
+            +         '<div class="datetimepicker-action left" ng-click="addYear(-1)"><</div>'
+            +         '<div class="datetimepicker-action right" ng-click="addYear(1)">></div>'
+            +         '<div class="datetimepicker-current-year">{{displayYear}}</div>'
             +       '</div>'
             +       '<div class="datetimepicker-calendar">'
             +         '<div class="datetimepicker-day">S</div>'
@@ -116,6 +121,7 @@ app.directive('datetimepicker',['$locale',function($locale){
         var timeString = scope.hour.toString().paddingLeft("00")+":"+scope.minutes.toString().paddingLeft("00")+" "+scope.meridian;
         scope.model = new Date(dateString+" "+timeString);
         scope.displayMonth = $locale.DATETIME_FORMATS.MONTH[scope.month];
+        scope.displayYear = scope.year;
         scope.display = dateString+" "+timeString;
         scope.days = scope.getDaysInMonth(scope.year,scope.month);
         scope.datePreview = dateString;
@@ -159,6 +165,10 @@ app.directive('datetimepicker',['$locale',function($locale){
           scope.month = 0;
           scope.year++;
         }
+      }
+
+      scope.addYear = function(increment){
+        scope.year = scope.year + increment;
       }
     }
   }
