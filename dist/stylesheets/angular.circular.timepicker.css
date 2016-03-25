@@ -88,6 +88,7 @@
   padding: 6px 12px;
   border: 1px solid rgba(0,0,0,0.15);
   font-size: 15px;
+  min-height: 34px;
 }
 
 .datetimepicker .datetimepicker-toggle {
