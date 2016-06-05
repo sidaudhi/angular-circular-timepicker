@@ -27,8 +27,8 @@ app.directive('circulartimepicker',[function(){
             +   '<div class="datetimepicker-display">{{display}}</div>'
             +   '<div ng-if="state" class="datetimepicker-content" ng-class="{\'datetimepicker-absolute\':config.modal}">'
             +     '<div class="datetimepicker-tabs">'
-            +       '<div class="datetimepicker-tab datetimepicker-tab-date" ng-class="{\'active\':tab==\'date\'}" ng-click="setTab(\'date\')">Date</div>'
-            +       '<div class="datetimepicker-tab datetimepicker-tab-time" ng-class="{\'active\':tab==\'time\'}" ng-click="setTab(\'time\')">Time</div>'
+            +       '<div class="datetimepicker-tab datetimepicker-tab-date" ng-class="{\'active\':tab==\'date\'}" ng-click="setTab(\'date\')"><span>Date</span></div>'
+            +       '<div class="datetimepicker-tab datetimepicker-tab-time" ng-class="{\'active\':tab==\'time\'}" ng-click="setTab(\'time\')"><span>Time</span></div>'
             +     '</div>'
             +     '<div class="datetimepicker-preview" ng-if="tab==\'date\'">{{datePreview}}</div>'
             +     '<div class="datetimepicker-preview" ng-if="tab==\'time\'">{{timePreview}}</div>'
@@ -77,7 +77,7 @@ app.directive('circulartimepicker',[function(){
         color:'rgba(255,255,255,0.75)',
         backgroundColor: 'rgba(0,0,0,0.75)'
       };
-      scope.months = ["January","February","March","April","May","June","July","Augusta","September","October","November","December"];
+      scope.months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
       scope.dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
       scope.$watch('model',function(value){
         var m;

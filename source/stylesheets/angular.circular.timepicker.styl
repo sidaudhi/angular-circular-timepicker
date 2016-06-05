@@ -65,6 +65,17 @@ smaller-circle-radius = 82
     background-color primary-color
     color #FFF
 
+    @media screen and (max-width: 767px) and (orientation: landscape)
+      display inline-block
+      width 260px
+
+  .datetimepicker-section
+    width 100%
+
+    @media screen and (max-width: 767px) and (orientation: landscape)
+      width 260px
+      display inline-block
+
   .datetimepicker-content
     min-height 300px
     background-color background-color
@@ -82,8 +93,19 @@ smaller-circle-radius = 82
       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
       border-bottom 15px solid primary-color
 
+      @media screen and (max-width: 767px) and (orientation: landscape)
+        width 320px
+        top calc(50% - 150px)
+        height 300px
+        left calc(50% - 160px)
+
     .datetimepicker-tabs
       background-color primary-color
+
+      @media screen and (max-width: 767px) and (orientation: landscape)
+        float left
+        width 60px
+        height 100%
 
       .datetimepicker-tab
         width 50%
@@ -102,6 +124,19 @@ smaller-circle-radius = 82
           color background-color
           font-weight bold
 
+        @media screen and (max-width: 767px) and (orientation: landscape)
+          width 100%
+          height 50%
+
+        span
+          @media screen and (max-width: 767px) and (orientation: landscape)
+            transform rotate(-90deg)
+            transform-origin right center 0
+            display block
+            margin-top 50px
+            margin-right 15px
+            font-size 18px
+
     .datetimepicker-month
       border-top 1px solid rgba(0,0,0,0.20)
       border-bottom 1px solid rgba(0,0,0,0.20)
@@ -109,6 +144,9 @@ smaller-circle-radius = 82
       width 174px
       display inline-block
       box-sizing border-box
+
+      @media screen and (max-width: 767px) and (orientation: landscape)
+        width 160px
 
       .datetimepicker-current-month
         text-align center
@@ -123,6 +161,9 @@ smaller-circle-radius = 82
       box-sizing border-box
       border-left 1px solid rgba(0,0,0,0.20)
 
+      @media screen and (max-width: 767px) and (orientation: landscape)
+        width 100px
+
       .datetimepicker-current-year
         text-align center
         padding 10px 10px
@@ -130,6 +171,12 @@ smaller-circle-radius = 82
   .datetimepicker-calendar
     text-align center
     padding 10px 0px
+
+    @media screen and (max-width: 767px) and (orientation: landscape)
+      transform scale(0.90,0.65)
+      width 270px
+      margin-left -5px
+      transform-origin 50% 0
 
     .datetimepicker-day
       width 38px
@@ -153,6 +200,9 @@ smaller-circle-radius = 82
           background-color #FFF
           cursor pointer
 
+      @media screen and (max-width: 767px) and (orientation: landscape)
+        padding 8px
+
   .time-circle-outer
     width "%spx" % (bigger-circle-radius*2)
     height "%spx" % (bigger-circle-radius*2)
@@ -161,6 +211,10 @@ smaller-circle-radius = 82
     margin 30px auto
     box-sizing border-box
     position relative
+
+    @media screen and (max-width: 767px) and (orientation: landscape)
+      transform scale(0.75)
+      margin-top -15px
 
     .time-circle-center
       position absolute

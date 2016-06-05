@@ -127,6 +127,24 @@
   color: #fff;
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-preview {
+    display: inline-block;
+    width: 260px;
+  }
+}
+
+.datetimepicker .datetimepicker-section {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-section {
+    width: 260px;
+    display: inline-block;
+  }
+}
+
 .datetimepicker .datetimepicker-content {
   min-height: 300px;
   background-color: #f3f3f4;
@@ -147,8 +165,25 @@
   border-bottom: 15px solid #1ab394;
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content.datetimepicker-absolute {
+    width: 320px;
+    top: calc(50% - 150px);
+    height: 300px;
+    left: calc(50% - 160px);
+  }
+}
+
 .datetimepicker .datetimepicker-content .datetimepicker-tabs {
   background-color: #1ab394;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content .datetimepicker-tabs {
+    float: left;
+    width: 60px;
+    height: 100%;
+  }
 }
 
 .datetimepicker .datetimepicker-content .datetimepicker-tabs .datetimepicker-tab {
@@ -173,6 +208,32 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content .datetimepicker-tabs .datetimepicker-tab {
+    width: 100%;
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content .datetimepicker-tabs .datetimepicker-tab span {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: right center 0;
+    -moz-transform-origin: right center 0;
+    -o-transform-origin: right center 0;
+    -ms-transform-origin: right center 0;
+    transform-origin: right center 0;
+    display: block;
+    margin-top: 50px;
+    margin-right: 15px;
+    font-size: 18px;
+  }
+}
+
 .datetimepicker .datetimepicker-content .datetimepicker-month {
   border-top: 1px solid rgba(0,0,0,0.2);
   border-bottom: 1px solid rgba(0,0,0,0.2);
@@ -182,6 +243,12 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content .datetimepicker-month {
+    width: 160px;
+  }
 }
 
 .datetimepicker .datetimepicker-content .datetimepicker-month .datetimepicker-current-month {
@@ -201,6 +268,12 @@
   border-left: 1px solid rgba(0,0,0,0.2);
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-content .datetimepicker-year {
+    width: 100px;
+  }
+}
+
 .datetimepicker .datetimepicker-content .datetimepicker-year .datetimepicker-current-year {
   text-align: center;
   padding: 10px 10px;
@@ -209,6 +282,23 @@
 .datetimepicker .datetimepicker-calendar {
   text-align: center;
   padding: 10px 0px;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-calendar {
+    -webkit-transform: scale(0.9, 0.65);
+    -moz-transform: scale(0.9, 0.65);
+    -o-transform: scale(0.9, 0.65);
+    -ms-transform: scale(0.9, 0.65);
+    transform: scale(0.9, 0.65);
+    width: 270px;
+    margin-left: -5px;
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+  }
 }
 
 .datetimepicker .datetimepicker-calendar .datetimepicker-day {
@@ -242,6 +332,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .datetimepicker-calendar .datetimepicker-day {
+    padding: 8px;
+  }
+}
+
 .datetimepicker .time-circle-outer {
   width: 240px;
   height: 240px;
@@ -253,6 +349,17 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .datetimepicker .time-circle-outer {
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    -o-transform: scale(0.75);
+    -ms-transform: scale(0.75);
+    transform: scale(0.75);
+    margin-top: -15px;
+  }
 }
 
 .datetimepicker .time-circle-outer .time-circle-center {
