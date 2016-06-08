@@ -50,7 +50,7 @@ This will copy the angular-circular-timepicker files into your components folder
 Add the date module as a dependency to your application module:
 
 ```html
-var myAppModule = angular.module('MyApp', ['angular.circular.timepicker.js'])
+var myAppModule = angular.module('MyApp', ['angular.circular.timepicker'])
 ```
 
 Apply the directive to your form elements:
